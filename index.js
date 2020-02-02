@@ -82,7 +82,36 @@ class Person {
 
 class Car {
 
-}
+  constructor(model, milesPerGallon) {
+    this.model = model,
+    this.milesPerGallon = milesPerGallon,
+    this.tank = 0,
+    this.odometer = 0;
+  } // END CONSTRUCTOR
+
+fill(gallons) {
+
+  return this.tank += gallons;
+} // END FILL METHOD
+
+
+// NEED HELP WITH THIS SECTION 
+
+drive(distance) {
+  // CAUSE THE ODOMETER TO GO UP
+
+
+  //SHOULD CAUSE THE TANK TO GO DOWN TAKING MILESPERGALLON INTO ACCOUNT
+
+
+  //NO MORE GAS
+  if (this.tank === 0) {
+    return `I ran out of fuel at ${this.odometer} miles`;
+  }
+ 
+} // END DRIVE METHOD
+
+} // END CAR CLASS
 
 /*
   TASK 3
@@ -96,9 +125,27 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
+
+//PARENT CLASS PASSES DOWN METHODS THROUGH INHERITANCE
 class Lambdasian {
 
-}
+  //!!!!!!!!   THIS NEEDS TO BE CHECKED 
+
+
+  constructor (attributes) {
+    this.name = attributes.name,
+    this.age = attributes.age,
+    this.location = attributes.location;
+  } // ENDS CONSTRUCTOR
+  
+  //WRITE METHODS HERE
+  
+ speak() {
+  return `Hello my name is ${this.name}, I am from ${this.location}`;
+ } // END SPEAK METHOD
+
+
+} // END OF CLASS
 
 /*
   TASK 4
@@ -109,12 +156,47 @@ class Lambdasian {
         + `favLanguage`: i.e. 'JavaScript, Python, Elm etc.'
         + `catchPhrase`: i.e. `Don't forget the homies`.
     - The constructor calls the parent constructor passing it what it needs.
-    - The constructor should also initialize `specialty`, `favLanguage` and `catchPhrase` properties on the instance.
+    - The constructor should also initialize
+     `specialty`, `favLanguage` and `catchPhrase`
+      properties on the instance.
     - Instructor instances have the following methods:
-        + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
-        + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
+        + `demo` receives a `subject` string as an argument
+         and returns the phrase 'Today we are learning 
+         about {subject}' where subject is the param 
+         passed in.
+        + `grade` receives a `student` object and
+         a `subject` string as arguments and 
+         returns '{student.name} receives a perfect score 
+         on {subject}'
 */
-class Instructor {
+
+//SUPER AND EXTENDS DO WHAT .CALL AND .CREATE DID
+
+
+// CHILD CLASS CAN INHERIT EVERYTHING THE PARENT HAS
+class Instructor extends Lambdasian {
+
+  constructor (attributes) {
+    super (attributes); // THIS REPLACES PARENT.CALL
+
+    //ANY SPECIAL ATTRB FOR THE CHILD THAT ARE TO BE INITIALIZED
+
+    this.specialty = attributes.specialty,
+    this.favLanguage = attributes.favLanguage,
+    this.catchPhrase = attributes.catchPhrase;
+  }
+
+  // ANY SPECIFIC METHODS FOR THE CHILD GO HERE
+
+  // ***********NEED HELP
+
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  } // ENDS DEMO METHOD
+
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  } // ENDS GRADE METHOD
 
 }
 
@@ -129,13 +211,46 @@ class Instructor {
     - The constructor calls the parent constructor passing to it what it needs.
     - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
     - Student instances have the following methods:
-        + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
-        + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
-        + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+        + `listSubjects` a method that returns all of the 
+        student's favSubjects in a single 
+        string: `Loving HTML, CSS, JS!`.
+        + `PRAssignment` a method that receives a 
+        subject as an argument and 
+        returns `student.name has submitted a PR for {subject}`
+        + `sprintChallenge` similar to 
+        PRAssignment but 
+        returns `student.name has begun 
+        sprint challenge on {subject}`
 */
-class Student {
 
-}
+//SECOND CHILD CLASS INHERITING FROM LAMBDASIAN
+class Student extends Lambdasian {
+
+// *********** NEED HELP HERE
+
+// INHERITING ATTRIBUTES FROM THE PARENT CLASS HERE
+  constructor(attributes) {
+    super(attributes);
+
+    // ANY ADDITIONAL ATTRIBUTES THESE ARE SPECIFIC TO THIS CHILD
+    this.previousBackground = attributes.previousBackground,
+    this.className = attributes.className,
+    this.favSubjects = attributes.favSubjects;
+  }
+
+
+// ANY ADDITIONAL METHODS THAT ARE SPECIFIC TO THIS CHILD
+  listSubjects() {
+    return `Loving ${this.favSubjects}`;
+  } // ENDS LISTSUBJECTS METHOD
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  } // ENDS PRASSIGNMENT METHOD
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  } // END SPRINTCHALLENGE METHOD
+
+} // ENDS STUDENT CLASS
 
 /*
   TASK 6
@@ -147,11 +262,33 @@ class Student {
     - Its constructor calls the parent constructor passing to it what it needs.
     - The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
     - ProjectManager instances have the following methods:
-        + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
-        + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
+        + `standUp` a method that takes in a slack 
+        channel and returns `{name} announces 
+        to {channel}, @channel standy times!`
+        + `debugsCode` a method that takes in a
+         student object and a subject 
+         and returns `{name} debugs {student.name}'s 
+         code on {subject}`
 */
-class ProjectManager {
 
+//GRANDCHILD CLASS: INHERITS FROM INSTRUCTOR WHO INHERS FROM LAMBDASIAN
+class ProjectManager extends Instructor {
+
+  constructor(attributes) {
+    super(attributes);
+
+    //ANY SPECIAL ATTRIBUTES
+    this.gradClassName = attributes.gradClassName,
+    this.favInstructor = this.favInstructor;
+  }
+// ANY SPECIAL METHODS
+
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  } // ENDS STANDUP METHOD
+  debugsCode(student, subject) {
+    return `${name} debugs ${student.name}'s code on ${subject}`;
+  } // ENDS DEBUGSCODE METHOD
 }
 
 /*
