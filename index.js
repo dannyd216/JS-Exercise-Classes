@@ -279,7 +279,7 @@ class ProjectManager extends Instructor {
 
     //ANY SPECIAL ATTRIBUTES
     this.gradClassName = attributes.gradClassName,
-    this.favInstructor = this.favInstructor;
+    this.favInstructor = attributes.favInstructor;
   }
 // ANY SPECIAL METHODS
 
@@ -287,7 +287,7 @@ class ProjectManager extends Instructor {
     return `${this.name} announces to ${channel}, @channel standy times!`;
   } // ENDS STANDUP METHOD
   debugsCode(student, subject) {
-    return `${name} debugs ${student.name}'s code on ${subject}`;
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   } // ENDS DEBUGSCODE METHOD
 }
 
